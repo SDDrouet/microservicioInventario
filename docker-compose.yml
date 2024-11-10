@@ -15,7 +15,8 @@ services:
     networks:
       - ventas-network
     depends_on:
-      - postgres_inventario
+      postgres_inventario:
+        condition: service_healthy
 
   postgres_inventario:
     image: postgres:14-alpine
@@ -29,6 +30,11 @@ services:
       - pgdata_inventario:/var/lib/postgresql/data
     networks:
       - ventas-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   pgdata_inventario:
