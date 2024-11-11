@@ -1,6 +1,7 @@
 class ProductoDTO {
-    constructor(idProducto, descripcion, precio, stock) {
+    constructor(idProducto, nombre, descripcion, precio, stock) {
         this.idProducto = idProducto;
+        this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;

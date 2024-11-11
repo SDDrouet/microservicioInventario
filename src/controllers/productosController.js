@@ -24,8 +24,8 @@ class ProductosController {
 
     async createProduct(req, res) {
         try {
-            const { descripcion, precio, stock } = req.body;
-            const productoDTO = new ProductoDTO(null, descripcion, precio, stock);
+            const { nombre, descripcion, precio, stock } = req.body;
+            const productoDTO = new ProductoDTO(null, nombre, descripcion, precio, stock);
             const newProduct = await ProductosService.createProduct(productoDTO);
             res.status(201).json(newProduct);
         } catch (error) {
@@ -37,8 +37,8 @@ class ProductosController {
     async updateProduct(req, res) {
         try {
             const idProducto = req.params.id;
-            const { descripcion, precio, stock} = req.body;
-            const productoDTO = new ProductoDTO(idProducto, descripcion, precio, stock);
+            const { nombre, descripcion, precio, stock} = req.body;
+            const productoDTO = new ProductoDTO(idProducto, nombre, descripcion, precio, stock);
             const updatedProduct = await ProductosService.updateProduct(productoDTO);
             res.json({message: 'Producto actualizado correctamente', count: updatedProduct});
         } catch (error) {
